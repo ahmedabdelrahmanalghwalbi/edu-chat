@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../../main.dart';
+import '../../../../core/constants/app_sizes.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../../../core/services/firebase_storage/firebase_storage.service.dart';
 import '../../../../core/services/media/media.service.dart';
@@ -40,7 +42,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(AppSizes.s16),
         child: Form(
           key: formKey,
           child: Column(
@@ -54,97 +56,97 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 },
                 child: file != null
                     ? CircleAvatar(
-                        radius: 50,
+                        radius: AppSizes.s50,
                         backgroundImage: MemoryImage(file!),
                       )
                     : CircleAvatar(
-                        radius: 50,
+                        radius: AppSizes.s50,
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         child: const Icon(
                           Icons.add_a_photo,
-                          size: 50,
+                          size: AppSizes.s50,
                           color: Colors.white,
                         ),
                       ),
               ),
-              const SizedBox(height: 20),
-              const SizedBox(height: 40),
+              const SizedBox(height: AppSizes.s20),
+              const SizedBox(height: AppSizes.s40),
               TextFormField(
                 controller: nameController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: 'Name',
+                  labelText: AppStrings.name,
                   border: OutlineInputBorder(),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) => email != null && email.isEmpty
-                    ? 'Name cannot be empty.'
+                    ? AppStrings.nameCanNotBeEmpty
                     : null,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSizes.s20),
               TextFormField(
                 controller: emailController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
+                  labelText: AppStrings.yourEmail,
                   border: OutlineInputBorder(),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
                     email != null && !EmailValidator.validate(email)
-                        ? 'Enter a valid email'
+                        ? AppStrings.enterValidEmail
                         : null,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSizes.s20),
               TextFormField(
                 controller: passwordController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
+                  labelText: AppStrings.password,
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) => value != null && value.length < 6
-                    ? 'Enter min. 6 characters'
+                    ? AppStrings.enterMinimum6Chars
                     : null,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSizes.s20),
               TextFormField(
                 controller: confirmPasswordController,
                 textInputAction: TextInputAction.done,
                 decoration: const InputDecoration(
-                  labelText: 'Confirm Password',
-                  border: OutlineInputBorder(),
+                  labelText: AppStrings.confirmPassword,
                 ),
                 obscureText: true,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) =>
                     passwordController.text != confirmPasswordController.text
-                        ? 'Passwords do not match'
+                        ? AppStrings.passwordMustMatch
                         : null,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSizes.s20),
               ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
+                    minimumSize: const Size.fromHeight(AppSizes.s50),
                   ),
-                  icon: const Icon(Icons.arrow_forward, size: 32),
+                  icon: const Icon(Icons.arrow_forward, size: AppSizes.s32),
                   label: const Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 24),
+                    AppStrings.signup,
+                    style: TextStyle(fontSize: AppSizes.s24),
                   ),
                   onPressed: signUp),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSizes.s20),
               RichText(
                 text: TextSpan(
-                  style: const TextStyle(color: Colors.black, fontSize: 20),
-                  text: 'Already have an account?  ',
+                  style: const TextStyle(
+                      color: Colors.black, fontSize: AppSizes.s20),
+                  text: AppStrings.alreadyHaveAnAccount,
                   children: [
                     TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = widget.onClickedSignIn,
-                      text: 'Log In',
+                      text: AppStrings.login,
                       style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: Theme.of(context).colorScheme.secondary,
@@ -163,7 +165,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     if (!isValid) return;
     if (file == null) {
       const snackBar =
-          SnackBar(content: Text('Please select a profile picture'));
+          SnackBar(content: Text(AppStrings.pleaseSelectProfilePicture));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
     }
