@@ -1,4 +1,14 @@
-class Message {
+import 'package:equatable/equatable.dart';
+
+enum MessageType {
+  text,
+  image;
+
+  String toJson() => name;
+  factory MessageType.fromJson(String json) => values.byName(json);
+}
+
+class Message extends Equatable {
   final String senderId;
   final String receiverId;
   final String content;
@@ -13,14 +23,12 @@ class Message {
     required this.messageType,
   });
 
-  factory Message.fromJson(Map<String, dynamic> json) =>
-      Message(
+  factory Message.fromJson(Map<String, dynamic> json) => Message(
         receiverId: json['receiverId'],
         senderId: json['senderId'],
         sentTime: json['sentTime'].toDate(),
         content: json['content'],
-        messageType:
-            MessageType.fromJson(json['messageType']),
+        messageType: MessageType.fromJson(json['messageType']),
       );
 
   Map<String, dynamic> toJson() => {
@@ -30,14 +38,13 @@ class Message {
         'content': content,
         'messageType': messageType.toJson(),
       };
-}
 
-enum MessageType {
-  text,
-  image;
-
-  String toJson() => name;
-
-  factory MessageType.fromJson(String json) =>
-      values.byName(json);
+  @override
+  List<Object?> get props => [
+        senderId,
+        receiverId,
+        sentTime,
+        content,
+        messageType,
+      ];
 }

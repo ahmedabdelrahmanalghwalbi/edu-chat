@@ -1,4 +1,6 @@
-class UserModel {
+import 'package:equatable/equatable.dart';
+
+class UserModel extends Equatable {
   final String uid;
   final String name;
   final String email;
@@ -15,8 +17,7 @@ class UserModel {
     this.isOnline = false,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      UserModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         uid: json['uid'],
         name: json['name'],
         image: json['image'],
@@ -33,4 +34,13 @@ class UserModel {
         'isOnline': isOnline,
         'lastActive': lastActive,
       };
+
+  @override
+  List<Object?> get props => [
+        uid,
+        name,
+        image,
+        email,
+        isOnline,
+      ];
 }
