@@ -41,6 +41,10 @@ dependencies:
   auto_size_text: 3.0.0
   # A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
   equatable: 2.0.5
+  # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database with live synchronization and offline support on Android and iOS.
+  cloud_firestore: 5.4.4
+  # A composable, multi-platform, Future-based API for HTTP requests.
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
