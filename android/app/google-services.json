@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "252294155566",
+    "project_id": "edu-chat-36688",
+    "storage_bucket": "edu-chat-36688.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252294155566:android:800daec28efb4bd7697ebf",
+        "android_client_info": {
+          "package_name": "com.example.edu_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzIoAoKWDdehxnRUCnBkDgYGzc-uVTpUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
