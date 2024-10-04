@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import '../../../../core/constants/app_sizes.dart';
 import '../../../models/message.dart';
 
 class MessageBubble extends StatelessWidget {
@@ -22,18 +23,19 @@ class MessageBubble extends StatelessWidget {
             color: isMe ? Theme.of(context).colorScheme.primary : Colors.grey,
             borderRadius: isMe
                 ? const BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(AppSizes.s30),
+                    bottomRight: Radius.circular(AppSizes.s30),
+                    topLeft: Radius.circular(AppSizes.s30),
                   )
                 : const BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(AppSizes.s30),
+                    bottomLeft: Radius.circular(AppSizes.s30),
+                    topLeft: Radius.circular(AppSizes.s30),
                   ),
           ),
-          margin: const EdgeInsets.only(top: 10, right: 10, left: 10),
-          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.only(
+              top: AppSizes.s10, right: AppSizes.s10, left: AppSizes.s10),
+          padding: const EdgeInsets.all(AppSizes.s10),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment:
@@ -41,10 +43,10 @@ class MessageBubble extends StatelessWidget {
             children: [
               isImage
                   ? Container(
-                      height: 200,
-                      width: 200,
+                      height: AppSizes.s200,
+                      width: AppSizes.s200,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(AppSizes.s15),
                         image: DecorationImage(
                           image: NetworkImage(message.content),
                           fit: BoxFit.cover,
@@ -53,12 +55,12 @@ class MessageBubble extends StatelessWidget {
                     )
                   : Text(message.content,
                       style: const TextStyle(color: Colors.white)),
-              const SizedBox(height: 5),
+              const SizedBox(height: AppSizes.s5),
               Text(
                 timeago.format(message.sentTime),
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 10,
+                  fontSize: AppSizes.s10,
                 ),
               ),
             ],

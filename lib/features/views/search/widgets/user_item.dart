@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import '../../../../core/constants/app_sizes.dart';
 import '../../../models/user.dart';
 import '../../chat/chat_screen.dart';
 
@@ -28,15 +29,15 @@ class _UserItemState extends State<UserItem> {
             alignment: Alignment.bottomRight,
             children: [
               CircleAvatar(
-                radius: 30,
+                radius: AppSizes.s30,
                 backgroundImage: NetworkImage(widget.user.image),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: AppSizes.s10),
                 child: CircleAvatar(
                   backgroundColor:
                       widget.user.isOnline ? Colors.green : Colors.grey,
-                  radius: 5,
+                  radius: AppSizes.s5,
                 ),
               ),
             ],
@@ -45,7 +46,7 @@ class _UserItemState extends State<UserItem> {
             widget.user.name,
             style: const TextStyle(
               color: Colors.black,
-              fontSize: 18,
+              fontSize: AppSizes.s18,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -54,7 +55,7 @@ class _UserItemState extends State<UserItem> {
             maxLines: 2,
             style: TextStyle(
               color: Theme.of(context).colorScheme.primary,
-              fontSize: 15,
+              fontSize: AppSizes.s15,
               overflow: TextOverflow.ellipsis,
             ),
           ),

@@ -48,10 +48,11 @@ class _ChatScreenState extends State<ChatScreen> {
         builder: (context, value, child) => value.user != null
             ? Row(
                 children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(value.user!.image),
-                    radius: AppSizes.s20,
-                  ),
+                  if (value.user?.image != null)
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(value.user!.image),
+                      radius: AppSizes.s20,
+                    ),
                   gapW12,
                   Column(
                     children: [
@@ -64,7 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                       ),
                       Text(
-                        value.user!.isOnline
+                        value.user?.isOnline ?? false
                             ? AppStrings.online
                             : AppStrings.offline,
                         style: TextStyle(
