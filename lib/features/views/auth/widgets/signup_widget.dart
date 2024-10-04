@@ -1,15 +1,14 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../../main.dart';
 import '../../../../core/constants/app_sizes.dart';
 import '../../../../core/constants/app_strings.dart';
-import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
-import '../../../../core/services/firebase_storage/firebase_storage.service.dart';
 import '../../../../core/services/media/media.service.dart';
 import '../../../../core/services/notification/notification.service.dart';
+import '../../../../core/util/custom_elevated_button.widget.dart';
+import '../../../controllers/auth.controller.dart';
 
 class SignUpWidget extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -36,7 +35,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
-
     super.dispose();
   }
 
@@ -48,7 +46,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 60),
+              gapH32,
+              AutoSizeText(
+                AppStrings.createAccount,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+              gapH16,
               GestureDetector(
                 onTap: () async {
                   final pickedImage = await MediaService.pickImage();
@@ -56,34 +60,33 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 },
                 child: file != null
                     ? CircleAvatar(
-                        radius: AppSizes.s50,
+                        radius: AppSizes.s60,
                         backgroundImage: MemoryImage(file!),
                       )
                     : CircleAvatar(
-                        radius: AppSizes.s50,
-                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        radius: AppSizes.s60,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
                         child: const Icon(
                           Icons.add_a_photo,
-                          size: AppSizes.s50,
+                          size: AppSizes.s60,
                           color: Colors.white,
                         ),
                       ),
               ),
-              const SizedBox(height: AppSizes.s20),
-              const SizedBox(height: AppSizes.s40),
+              gapH24,
               TextFormField(
                 controller: nameController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
                   labelText: AppStrings.name,
-                  border: OutlineInputBorder(),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) => email != null && email.isEmpty
                     ? AppStrings.nameCanNotBeEmpty
                     : null,
               ),
-              const SizedBox(height: AppSizes.s20),
+              gapH16,
               TextFormField(
                 controller: emailController,
                 textInputAction: TextInputAction.next,
@@ -97,7 +100,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         ? AppStrings.enterValidEmail
                         : null,
               ),
-              const SizedBox(height: AppSizes.s20),
+              gapH16,
               TextFormField(
                 controller: passwordController,
                 textInputAction: TextInputAction.next,
@@ -111,7 +114,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ? AppStrings.enterMinimum6Chars
                     : null,
               ),
-              const SizedBox(height: AppSizes.s20),
+              gapH16,
               TextFormField(
                 controller: confirmPasswordController,
                 textInputAction: TextInputAction.done,
@@ -125,18 +128,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         ? AppStrings.passwordMustMatch
                         : null,
               ),
-              const SizedBox(height: AppSizes.s20),
-              ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(AppSizes.s50),
-                  ),
-                  icon: const Icon(Icons.arrow_forward, size: AppSizes.s32),
-                  label: const Text(
-                    AppStrings.signup,
-                    style: TextStyle(fontSize: AppSizes.s24),
-                  ),
-                  onPressed: signUp),
-              const SizedBox(height: AppSizes.s20),
+              gapH32,
+              CustomElevatedButton(
+                title: AppStrings.signup,
+                onPressed: () async => await AuthController.signUp(
+                    context: context,
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim(),
+                    name: nameController.text.trim(),
+                    file: file,
+                    formKey: formKey,
+                    notifications: notifications),
+                isPrimaryBackground: false,
+              ),
+              gapH26,
               RichText(
                 text: TextSpan(
                   style: const TextStyle(
@@ -159,45 +164,4 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           ),
         ),
       );
-
-  Future signUp() async {
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) return;
-    if (file == null) {
-      const snackBar =
-          SnackBar(content: Text(AppStrings.pleaseSelectProfilePicture));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      return;
-    }
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
-
-    try {
-      final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      final image = await FirebaseStorageService.uploadImage(
-          file!, 'image/profile/${user.user!.uid}');
-
-      await FirebaseFirestoreService.createUser(
-        image: image,
-        email: user.user!.email!,
-        uid: user.user!.uid,
-        name: nameController.text,
-      );
-
-      await notifications.requestPermission();
-      await notifications.getToken();
-    } on FirebaseAuthException catch (e) {
-      final snackBar = SnackBar(content: Text(e.message!));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-
-    navigatorKey.currentState!.popUntil(((route) => route.isFirst));
-  }
 }

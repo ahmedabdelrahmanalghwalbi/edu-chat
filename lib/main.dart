@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 import 'core/theme/app_theme.dart';
 import 'firebase_options.dart';
 import 'provider/firebase_provider.dart';
-import 'features/screens/auth/auth_page.dart';
-import 'features/screens/users_chats/chats_screen.dart';
+import 'features/views/auth/auth_page.dart';
+import 'features/views/users_chats/chats_screen.dart';
 
 Future<void> _backgroundMessageHandler(RemoteMessage message) async {
   await Firebase.initializeApp(

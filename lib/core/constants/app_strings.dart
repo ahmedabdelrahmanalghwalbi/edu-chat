@@ -28,7 +28,7 @@ abstract class AppStrings {
   static const String enterValidEmail = 'Enter a valid email';
   static const String enterMinimum6Chars = 'Enter min. 6 characters';
   static const String noAccount = 'No account? ';
-  static const String signup = 'No account?  ';
+  static const String signup = 'Sign Up ';
   static const String name = 'Name';
   static const String nameCanNotBeEmpty = 'Name cannot be empty.';
   static const String confirmPassword = 'Confirm Password';
@@ -36,4 +36,5 @@ abstract class AppStrings {
   static const String alreadyHaveAnAccount = 'Already have an account?  ';
   static const String pleaseSelectProfilePicture =
       'Please select a profile picture';
+  static const String createAccount = 'Create Account';
 }

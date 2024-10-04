@@ -61,11 +61,9 @@ abstract class AppThemeService {
         light: const Color(AppColors.inputFillColor),
         dark: const Color(AppColors.inputFillColor)),
     inputHintColor: ColorValue(
-        light: const Color(AppColors.inputHintColor),
-        dark: const Color(AppColors.inputHintColor)),
+        light: const Color(AppColors.c1), dark: const Color(AppColors.c1)),
     inputLabelColor: ColorValue(
-        light: const Color(AppColors.inputLabelColor),
-        dark: const Color(AppColors.inputLabelColor)),
+        light: const Color(AppColors.c2), dark: const Color(AppColors.c2)),
     inputTextColor: ColorValue(
         light: const Color(AppColors.inputTextColor),
         dark: const Color(AppColors.inputTextColor)),
@@ -159,7 +157,7 @@ abstract class AppThemeService {
         // application input decoration theme
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: TextStyle(
-              color: colorPalette.inputHintColor.color,
+              color: colorPalette.primaryColor.color,
               fontWeight: FontWeight.w500,
               fontSize: AppSizes.s12),
           enabledBorder: OutlineInputBorder(

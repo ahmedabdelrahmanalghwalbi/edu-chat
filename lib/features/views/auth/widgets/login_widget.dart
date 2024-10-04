@@ -1,12 +1,13 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_images.dart';
 import '../../../../core/constants/app_sizes.dart';
 import '../../../../core/constants/app_strings.dart';
-import '../../../../main.dart';
-import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
+import '../../../../core/util/custom_elevated_button.widget.dart';
 import '../../../../core/services/notification/notification.service.dart';
+import '../../../controllers/auth.controller.dart';
 
 class LoginWidget extends StatefulWidget {
   final Function() onClickedSignUp;
@@ -40,15 +41,31 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: AppSizes.s60),
-              const FlutterLogo(size: AppSizes.s120),
-              const SizedBox(height: AppSizes.s40),
+              gapH32,
+              Image.asset(
+                AppImages.appIcon,
+                fit: BoxFit.contain,
+                height: AppSizes.s150,
+                width: AppSizes.s150,
+              ),
+              gapH16,
+              // Login Page Headline
+              AutoSizeText(
+                AppStrings.loginTo,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+              AutoSizeText(
+                AppStrings.yourAccount,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+              gapH32,
               TextFormField(
                 controller: emailController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
                   labelText: AppStrings.yourEmail,
-                  border: OutlineInputBorder(),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
@@ -56,7 +73,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ? AppStrings.enterValidEmail
                         : null,
               ),
-              const SizedBox(height: AppSizes.s20),
+              gapH20,
               TextFormField(
                 controller: passwordController,
                 textInputAction: TextInputAction.done,
@@ -70,23 +87,21 @@ class _LoginWidgetState extends State<LoginWidget> {
                     ? AppStrings.enterMinimum6Chars
                     : null,
               ),
-              const SizedBox(height: AppSizes.s20),
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(AppSizes.s50),
-                ),
-                icon: const Icon(Icons.lock_open, size: AppSizes.s32),
-                label: const Text(
-                  AppStrings.login,
-                  style: TextStyle(fontSize: AppSizes.s24),
-                ),
-                onPressed: signIn,
+              gapH36,
+              CustomElevatedButton(
+                title: AppStrings.login,
+                onPressed: () async => await AuthController.signIn(
+                    context: context,
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim(),
+                    formKey: formKey,
+                    notifications: notifications),
+                isPrimaryBackground: false,
               ),
               gapH32,
               RichText(
                 text: TextSpan(
-                  style: const TextStyle(
-                      color: Colors.black, fontSize: AppSizes.s20),
+                  style: const TextStyle(fontSize: AppSizes.s16),
                   text: AppStrings.noAccount,
                   children: [
                     TextSpan(
@@ -105,34 +120,4 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
         ),
       );
-
-  Future signIn() async {
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) return;
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
-
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-
-      await FirebaseFirestoreService.updateUserData(
-        {'lastActive': DateTime.now()},
-      );
-
-      await notifications.requestPermission();
-      await notifications.getToken();
-    } on FirebaseAuthException catch (e) {
-      final snackBar = SnackBar(content: Text(e.message!));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-
-    navigatorKey.currentState!.popUntil(((route) => route.isFirst));
-  }
 }

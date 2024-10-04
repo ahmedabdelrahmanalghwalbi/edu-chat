@@ -1,8 +1,8 @@
 abstract class AppColors {
   // application colors
-  static const int c1 = 0xff1E2D74;
-  static const int c2 = 0xffff1493;
-  static const int c3 = 0xFF000000;
+  static const int c1 = 0xFF000000;
+  static const int c2 = 0xff8F47FE;
+  static const int c3 = 0xFF31252B;
 
 // application background colors
   static const int bgC1 = 0xff1E2D74;
