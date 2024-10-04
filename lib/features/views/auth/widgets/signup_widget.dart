@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../main.dart';
-import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
-import '../../../core/services/firebase_storage/firebase_storage.service.dart';
-import '../../../core/services/media/media.service.dart';
-import '../../../core/services/notification/notification.service.dart';
+import '../../../../../main.dart';
+import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
+import '../../../../core/services/firebase_storage/firebase_storage.service.dart';
+import '../../../../core/services/media/media.service.dart';
+import '../../../../core/services/notification/notification.service.dart';
 
 class SignUpWidget extends StatefulWidget {
   final Function() onClickedSignIn;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/app_sizes.dart';
+import '../../../../core/constants/app_sizes.dart';
 
 class EmptyWidget extends StatelessWidget {
   const EmptyWidget({super.key, required this.icon, required this.text});

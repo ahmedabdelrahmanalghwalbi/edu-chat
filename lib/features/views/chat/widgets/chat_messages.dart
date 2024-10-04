@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../core/constants/app_strings.dart';
-import '../../models/message.dart';
-import '../../../provider/firebase_provider.dart';
-import 'empty_widget.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../models/message.dart';
+import '../../../../provider/firebase_provider.dart';
+import '../../search/widgets/empty_widget.dart';
 import 'message_bubble.dart';
 
 class ChatMessages extends StatelessWidget {

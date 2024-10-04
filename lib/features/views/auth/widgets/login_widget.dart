@@ -2,10 +2,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../main.dart';
-import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
-import '../../../core/services/notification/notification.service.dart';
-import '../screens/auth/forgot_password_page.dart';
+import '../../../../main.dart';
+import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
+import '../../../../core/services/notification/notification.service.dart';
 
 class LoginWidget extends StatefulWidget {
   final Function() onClickedSignUp;
@@ -83,19 +82,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                 onPressed: signIn,
               ),
               const SizedBox(height: 24),
-              GestureDetector(
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 20,
-                  ),
-                ),
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ForgotPasswordPage(),
-                )),
-              ),
               const SizedBox(height: 24),
               RichText(
                 text: TextSpan(

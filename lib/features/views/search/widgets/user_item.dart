@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import '../../models/user.dart';
-import '../screens/chat_screen.dart';
+import '../../../models/user.dart';
+import '../../chat/chat_screen.dart';
 
 class UserItem extends StatefulWidget {
   const UserItem({super.key, required this.user});

@@ -6,8 +6,8 @@ import '../../../core/constants/app_sizes.dart';
 import '../../../provider/firebase_provider.dart';
 import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../../core/services/notification/notification.service.dart';
-import '../widgets/user_item.dart';
-import 'search_screen.dart';
+import '../search/widgets/user_item.dart';
+import '../search/search_screen.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});

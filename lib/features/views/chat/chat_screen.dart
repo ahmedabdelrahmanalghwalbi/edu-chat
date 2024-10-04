@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../provider/firebase_provider.dart';
-import '../widgets/chat_messages.dart';
-import '../widgets/chat_text_field.dart';
+import 'widgets/chat_messages.dart';
+import 'widgets/chat_text_field.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key, required this.userId});
