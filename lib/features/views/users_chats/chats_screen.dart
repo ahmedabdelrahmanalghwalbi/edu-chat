@@ -60,7 +60,9 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: const Text(AppStrings.chats),
           leading: IconButton(
             onPressed: () => Navigator.of(context).push(
@@ -76,7 +78,8 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
         ),
         body: Consumer<FirebaseProvider>(builder: (context, value, child) {
           return ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: AppSizes.s16),
+            padding: const EdgeInsets.symmetric(
+                vertical: AppSizes.s16, horizontal: AppSizes.s8),
             itemCount: value.users.length,
             separatorBuilder: (context, index) =>
                 const SizedBox(height: AppSizes.s10),

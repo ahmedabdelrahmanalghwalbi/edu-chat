@@ -28,21 +28,23 @@ class _UsersSearchScreenState extends State<UsersSearchScreen> {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
+          backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(
                 Icons.arrow_back_outlined,
-                color: Colors.white,
+                color: Colors.black,
               )),
           title: const Text(
             AppStrings.userSearch,
-            style: TextStyle(fontSize: AppSizes.s25, color: Colors.white),
+            style: TextStyle(fontSize: AppSizes.s25, color: Colors.black),
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSizes.s16),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppSizes.s8, vertical: AppSizes.s16),
           child: Column(
             children: [
               CustomTextFormField(
