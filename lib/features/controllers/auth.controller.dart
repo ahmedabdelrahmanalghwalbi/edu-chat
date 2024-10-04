@@ -18,12 +18,6 @@ abstract class AuthController {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
-
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -59,12 +53,6 @@ abstract class AuthController {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
     }
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
 
     try {
       final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
