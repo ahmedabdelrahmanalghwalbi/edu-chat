@@ -1,6 +1,8 @@
+import 'package:edu_chat/core/constants/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../core/constants/app_sizes.dart';
 import '../../../provider/firebase_provider.dart';
 import '../widgets/custom_text_form_field.dart';
 import '../widgets/empty_widget.dart';
@@ -30,17 +32,17 @@ class _UsersSearchScreenState extends State<UsersSearchScreen> {
           centerTitle: true,
           foregroundColor: Colors.black,
           title: const Text(
-            'Users Search',
-            style: TextStyle(fontSize: 25),
+            AppStrings.userSearch,
+            style: TextStyle(fontSize: AppSizes.s25),
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: AppSizes.s16),
           child: Column(
             children: [
               CustomTextFormField(
                 controller: controller,
-                hintText: 'Search',
+                hintText: AppStrings.search,
                 onChanged: (val) =>
                     Provider.of<FirebaseProvider>(context, listen: false)
                         .searchUser(val),
@@ -49,9 +51,9 @@ class _UsersSearchScreenState extends State<UsersSearchScreen> {
                 builder: (context, value, child) => Expanded(
                   child: controller.text.isEmpty
                       ? const EmptyWidget(
-                          icon: Icons.search, text: 'Search of User')
+                          icon: Icons.search, text: AppStrings.searchOfUser)
                       : ListView.builder(
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(AppSizes.s16),
                           itemCount: value.search.length,
                           itemBuilder: (context, index) =>
                               value.search[index].uid !=

@@ -1,6 +1,8 @@
+import 'package:edu_chat/core/constants/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../core/constants/app_sizes.dart';
 import '../../../provider/firebase_provider.dart';
 import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../../core/services/notification/notification.service.dart';
@@ -59,7 +61,7 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Chats'),
+          title: const Text(AppStrings.chats),
           actions: [
             IconButton(
               onPressed: () => Navigator.of(context).push(
@@ -74,9 +76,10 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
         ),
         body: Consumer<FirebaseProvider>(builder: (context, value, child) {
           return ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: AppSizes.s16),
             itemCount: value.users.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            separatorBuilder: (context, index) =>
+                const SizedBox(height: AppSizes.s10),
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) =>
                 value.users[index].uid != FirebaseAuth.instance.currentUser?.uid

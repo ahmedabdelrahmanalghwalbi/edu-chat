@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/app_sizes.dart';
+
 class EmptyWidget extends StatelessWidget {
-  const EmptyWidget(
-      {super.key, required this.icon, required this.text});
+  const EmptyWidget({super.key, required this.icon, required this.text});
 
   final IconData icon;
   final String text;
@@ -13,10 +14,10 @@ class EmptyWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(icon, size: 200),
+            Icon(icon, size: AppSizes.s200),
             Text(
               text,
-              style: const TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: AppSizes.s30),
             ),
           ],
         ),

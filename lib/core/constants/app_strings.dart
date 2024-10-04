@@ -16,4 +16,13 @@ abstract class AppStrings {
   static const String logout = 'Logout';
   static const String areYouSureYouWantToLogout =
       'Are you sure you want to logout ?';
+  static const String online = 'Online';
+  static const String offline = 'Offline';
+  static const String chats = 'Chats';
+  static const String userSearch = 'User Search';
+  static const String search = 'Search';
+  static const String searchOfUser = 'Search of User';
+  static const String sayHello = 'Say Hello !';
+  static const String addMessage = 'Add Message ...';
+  static const String image = 'image ........';
 }

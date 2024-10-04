@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../../core/constants/app_sizes.dart';
+import '../../../core/constants/app_strings.dart';
 import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../../core/services/media/media.service.dart';
 import '../../../core/services/notification/notification.service.dart';
@@ -39,22 +41,22 @@ class _ChatTextFieldState extends State<ChatTextField> {
           Expanded(
             child: CustomTextFormField(
               controller: controller,
-              hintText: 'Add Message...',
+              hintText: AppStrings.addMessage,
             ),
           ),
-          const SizedBox(width: 5),
+          gapW4,
           CircleAvatar(
             backgroundColor: Theme.of(context).colorScheme.primary,
-            radius: 20,
+            radius: AppSizes.s20,
             child: IconButton(
               icon: const Icon(Icons.send, color: Colors.white),
               onPressed: () => _sendText(context),
             ),
           ),
-          const SizedBox(width: 5),
+          gapW4,
           CircleAvatar(
             backgroundColor: Theme.of(context).colorScheme.primary,
-            radius: 20,
+            radius: AppSizes.s20,
             child: IconButton(
               icon: const Icon(Icons.camera_alt, color: Colors.white),
               onPressed: _sendImage,
@@ -88,7 +90,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
         file: file!,
       );
       await notificationsService.sendNotification(
-        body: 'image........',
+        body: AppStrings.image,
         senderId: FirebaseAuth.instance.currentUser!.uid,
       );
     }
