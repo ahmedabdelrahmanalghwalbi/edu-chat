@@ -5,7 +5,7 @@ import '../../../../core/constants/app_sizes.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../../../core/services/media/media.service.dart';
-import '../../../../core/services/notification/notification.service.dart';
+import '../../../../core/services/notification/notification_legacy.service.dart';
 import '../../search/widgets/custom_text_form_field.dart';
 
 class ChatTextField extends StatefulWidget {

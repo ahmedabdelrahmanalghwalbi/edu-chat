@@ -1,14 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../../main.dart';
 import '../../../../core/constants/app_sizes.dart';
 import '../../../../core/constants/app_strings.dart';
+import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
+import '../../../../core/services/firebase_storage/firebase_storage.service.dart';
 import '../../../../core/services/media/media.service.dart';
 import '../../../../core/services/notification/notification_legacy.service.dart';
 import '../../../../core/util/custom_elevated_button.widget.dart';
-import '../../../controllers/auth.controller.dart';
 
 class SignUpWidget extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -131,14 +134,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               gapH32,
               CustomElevatedButton(
                 title: AppStrings.signup,
-                onPressed: () async => await AuthController.signUp(
-                    context: context,
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim(),
-                    name: nameController.text.trim(),
-                    file: file,
-                    formKey: formKey,
-                    notifications: notifications),
+                onPressed: () async => await signUp(),
                 isPrimaryBackground: false,
               ),
               gapH26,
@@ -164,4 +160,45 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           ),
         ),
       );
+
+  Future signUp() async {
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) return;
+    if (file == null) {
+      const snackBar =
+          SnackBar(content: Text(AppStrings.pleaseSelectProfilePicture));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return;
+    }
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+
+    try {
+      final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      final image = await FirebaseStorageService.uploadImage(
+          file!, 'image/profile/${user.user!.uid}');
+
+      await FirebaseFirestoreService.createUser(
+        image: image,
+        email: user.user!.email!,
+        uid: user.user!.uid,
+        name: nameController.text,
+      );
+
+      await notifications.requestPermission();
+      await notifications.getToken();
+    } on FirebaseAuthException catch (e) {
+      final snackBar = SnackBar(content: Text(e.message!));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
+    navigatorKey.currentState!.popUntil(((route) => route.isFirst));
+  }
 }

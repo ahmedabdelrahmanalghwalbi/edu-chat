@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../core/services/firebase_storage/firebase_storage.service.dart';
-import '../../core/services/notification/notification.service.dart';
+import '../../core/services/notification/notification_legacy.service.dart';
 import '../../main.dart';
 
 abstract class AuthController {

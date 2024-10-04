@@ -5,18 +5,19 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import '../../../features/views/chat/chat_screen.dart';
 
 const channel = AndroidNotificationChannel(
-    'high_importance_channel', 'Hign Importance Notifications',
-    description: 'This channel is used for important notifications.',
-    importance: Importance.high,
-    playSound: true);
+  'high_importance_channel',
+  'High Importance Notifications',
+  description: 'This channel is used for important notifications.',
+  importance: Importance.high,
+  playSound: true,
+);
 
-class NotificationsService {
-  static const key =
-      '252294155566-cs63drbp61k4s4688aqeu9hl0vuokems.apps.googleusercontent.com';
-
+class NotificationsServiceV1 {
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   void _initLocalNotification() {
@@ -111,7 +112,7 @@ class NotificationsService {
     receiverToken = await getToken.data()!['token'];
   }
 
-  void firebaseNotification(context) {
+  void firebaseNotification(BuildContext context) {
     _initLocalNotification();
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
@@ -127,31 +128,59 @@ class NotificationsService {
     });
   }
 
-  Future<void> sendNotification(
-      {required String body, required String senderId}) async {
+  Future<void> sendNotification({
+    required String body,
+    required String senderId,
+  }) async {
     try {
-      await http.post(
-        Uri.parse('https://fcm.googleapis.com/fcm/send'),
+      // Initialize Google SignIn
+      final googleSignIn = GoogleSignIn(
+        scopes: ['https://www.googleapis.com/auth/firebase.messaging'],
+      );
+
+      // Authenticate the user and get credentials
+      final authClient = await _getAuthClientFromGoogleSignIn(googleSignIn);
+
+      final Uri url = Uri.parse(
+          'https://fcm.googleapis.com/v1/projects/YOUR_PROJECT_ID/messages:send');
+
+      final response = await authClient.post(
+        url,
         headers: <String, String>{
           'Content-Type': 'application/json',
-          'Authorization': 'key=$key',
         },
         body: jsonEncode(<String, dynamic>{
-          "to": receiverToken,
-          'priority': 'high',
-          'notification': <String, dynamic>{
-            'body': body,
-            'title': 'New Message !',
-          },
-          'data': <String, String>{
-            'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-            'status': 'done',
-            'senderId': senderId,
+          "message": {
+            "token": receiverToken,
+            'notification': <String, dynamic>{
+              'body': body,
+              'title': 'New Message!',
+            },
+            'data': <String, String>{
+              'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+              'status': 'done',
+              'senderId': senderId,
+            }
           }
         }),
       );
+
+      debugPrint("FCM Response: ${response.body}");
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint("Error sending FCM message: $e");
     }
+  }
+
+  Future<http.Client> _getAuthClientFromGoogleSignIn(
+      GoogleSignIn googleSignIn) async {
+    // Obtain the authenticated HTTP client
+    final googleAuthClient = await googleSignIn.authenticatedClient();
+
+    if (googleAuthClient == null) {
+      throw Exception("Failed to get authenticated client");
+    }
+
+    // Return the AuthClient directly as http.Client
+    return googleAuthClient;
   }
 }
