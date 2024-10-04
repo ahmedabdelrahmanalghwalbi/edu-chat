@@ -65,7 +65,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 controller: emailController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: AppStrings.yourEmail,
+                  hintText: AppStrings.yourEmail,
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
@@ -78,7 +78,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 controller: passwordController,
                 textInputAction: TextInputAction.done,
                 decoration: const InputDecoration(
-                  labelText: AppStrings.password,
+                  hintText: AppStrings.password,
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,

@@ -37,4 +37,5 @@ abstract class AppStrings {
   static const String pleaseSelectProfilePicture =
       'Please select a profile picture';
   static const String createAccount = 'Create Account';
+  static const String notFoundedUsers = 'Not Founded Users';
 }

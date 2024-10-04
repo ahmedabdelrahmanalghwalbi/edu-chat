@@ -62,15 +62,15 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text(AppStrings.chats),
+          leading: IconButton(
+            onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const UsersSearchScreen())),
+            icon: const Icon(Icons.search, color: Colors.black),
+          ),
           actions: [
             IconButton(
-              onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const UsersSearchScreen())),
-              icon: const Icon(Icons.search, color: Colors.black),
-            ),
-            IconButton(
               onPressed: () => FirebaseAuth.instance.signOut(),
-              icon: const Icon(Icons.logout, color: Colors.black),
+              icon: const Icon(Icons.logout, color: Colors.red),
             ),
           ],
         ),

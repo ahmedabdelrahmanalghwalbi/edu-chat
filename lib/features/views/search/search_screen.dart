@@ -26,14 +26,19 @@ class _UsersSearchScreenState extends State<UsersSearchScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          foregroundColor: Colors.black,
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(
+                Icons.arrow_back_outlined,
+                color: Colors.white,
+              )),
           title: const Text(
             AppStrings.userSearch,
-            style: TextStyle(fontSize: AppSizes.s25),
+            style: TextStyle(fontSize: AppSizes.s25, color: Colors.white),
           ),
         ),
         body: Padding(
@@ -53,13 +58,14 @@ class _UsersSearchScreenState extends State<UsersSearchScreen> {
                       ? const EmptyWidget(
                           icon: Icons.search, text: AppStrings.searchOfUser)
                       : ListView.builder(
-                          padding: const EdgeInsets.all(AppSizes.s16),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: AppSizes.s12),
                           itemCount: value.search.length,
                           itemBuilder: (context, index) =>
                               value.search[index].uid !=
                                       FirebaseAuth.instance.currentUser?.uid
                                   ? UserItem(user: value.search[index])
-                                  : const SizedBox(),
+                                  : const SizedBox.shrink(),
                         ),
                 ),
               ),

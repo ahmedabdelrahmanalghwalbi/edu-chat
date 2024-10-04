@@ -79,7 +79,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 controller: nameController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: AppStrings.name,
+                  hintText: AppStrings.name,
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) => email != null && email.isEmpty
@@ -91,7 +91,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 controller: emailController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: AppStrings.yourEmail,
+                  hintText: AppStrings.yourEmail,
                   border: OutlineInputBorder(),
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -105,7 +105,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 controller: passwordController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: AppStrings.password,
+                  hintText: AppStrings.password,
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
@@ -119,7 +119,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 controller: confirmPasswordController,
                 textInputAction: TextInputAction.done,
                 decoration: const InputDecoration(
-                  labelText: AppStrings.confirmPassword,
+                  hintText: AppStrings.confirmPassword,
                 ),
                 obscureText: true,
                 autovalidateMode: AutovalidateMode.onUserInteraction,

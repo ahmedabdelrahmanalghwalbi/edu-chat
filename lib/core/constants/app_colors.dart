@@ -6,12 +6,12 @@ abstract class AppColors {
 
 // application background colors
   static const int bgC1 = 0xff1E2D74;
-  static const int bgC2 = 0xffff1493;
+  static const int bgC2 = 0xff8F47FE;
   static const int bgC3 = 0xFFFFFFFF;
 
 // application text colors
   static const int textC1 = 0xff1E2D74;
-  static const int textC2 = 0xffff1493;
+  static const int textC2 = 0xff8F47FE;
   static const int textC3 = 0xFF000000;
   static const int textC4 = 0xff606060;
   static const int textC5 = 0xFFFFFFFF;
@@ -20,7 +20,7 @@ abstract class AppColors {
   static const int appBarBackgroundColor = 0x00000000; // transparent
   static const int bodyBackgroundColor = 0xFFFFFFFF;
   static const int btmAppBarBackgroundColor = 0xFFFFFFFF;
-  static const int fabBackgroundColor = 0xffff1493;
+  static const int fabBackgroundColor = 0xff8F47FE;
   static const int fabIconColor = 0xFFFFFFFF;
 // input colors
   static const int inputBorderColor = 0xffDFDFDF;
