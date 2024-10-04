@@ -15,7 +15,7 @@ const channel = AndroidNotificationChannel(
 
 class NotificationsService {
   static const key =
-      'AAAAEqUOTOQ:APA91bFpNSEt_rnhIdc0IRpIUeZM1USeFDSh6AALHKXNsiJwrQH_rPV8qvp9-TsDTnrat8iKdPZiyyR5AHDSVF5SzsGpwWqeJSKT_0FFf0eEmI6uOQ3tSyHnlAwAq1TC253BBiui2olI';
+      '252294155566-cs63drbp61k4s4688aqeu9hl0vuokems.apps.googleusercontent.com';
 
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -46,7 +46,7 @@ class NotificationsService {
       htmlFormatTitle: true,
     );
     final androidDetails = AndroidNotificationDetails(
-      'com.example.chat_app.urgent',
+      'com.example.edu_chat',
       'mychannelid',
       importance: Importance.max,
       styleInformation: styleInformation,

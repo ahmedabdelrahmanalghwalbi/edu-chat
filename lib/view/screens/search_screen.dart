@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../models/user.dart';
 import '../../provider/firebase_provider.dart';
 import '../widgets/custom_text_form_field.dart';
 import '../widgets/empty_widget.dart';
@@ -16,25 +15,6 @@ class UsersSearchScreen extends StatefulWidget {
 
 class _UsersSearchScreenState extends State<UsersSearchScreen> {
   final controller = TextEditingController();
-
-  final userData = [
-    UserModel(
-      uid: '1',
-      name: 'Hazy',
-      email: 'test@test.test',
-      image: 'https://i.pravatar.cc/150?img=0',
-      isOnline: true,
-      lastActive: DateTime.now(),
-    ),
-    UserModel(
-      uid: '1',
-      name: 'Charlotte',
-      email: 'test@test.test',
-      image: 'https://i.pravatar.cc/150?img=1',
-      isOnline: false,
-      lastActive: DateTime.now(),
-    ),
-  ];
 
   @override
   void dispose() {

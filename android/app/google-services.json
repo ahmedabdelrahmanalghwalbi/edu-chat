@@ -12,7 +12,16 @@
           "package_name": "com.example.edu_chat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "252294155566-cs63drbp61k4s4688aqeu9hl0vuokems.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.edu_chat",
+            "certificate_hash": "49aa0d6e10f9603f3ced26075284f3b92cb60394"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBzIoAoKWDdehxnRUCnBkDgYGzc-uVTpUQ"

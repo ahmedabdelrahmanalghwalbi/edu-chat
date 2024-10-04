@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../models/user.dart';
 import '../../provider/firebase_provider.dart';
 import '../../services/firebase_firestore_service.dart';
 import '../../services/notification_service.dart';
@@ -56,41 +55,6 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
-
-  final userData = [
-    UserModel(
-      uid: '1',
-      name: 'Hazy',
-      email: 'test@test.test',
-      image: 'https://i.pravatar.cc/150?img=0',
-      isOnline: true,
-      lastActive: DateTime.now(),
-    ),
-    UserModel(
-      uid: '1',
-      name: 'Charlotte',
-      email: 'test@test.test',
-      image: 'https://i.pravatar.cc/150?img=1',
-      isOnline: false,
-      lastActive: DateTime.now(),
-    ),
-    UserModel(
-      uid: '2',
-      name: 'Ahmed',
-      email: 'test@test.test',
-      image: 'https://i.pravatar.cc/150?img=2',
-      isOnline: true,
-      lastActive: DateTime.now(),
-    ),
-    UserModel(
-      uid: '3',
-      name: 'Prateek',
-      email: 'test@test.test',
-      image: 'https://i.pravatar.cc/150?img=3',
-      isOnline: false,
-      lastActive: DateTime.now(),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) => Scaffold(

@@ -1,4 +1,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Internet permission for network operations -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Permission to access network state -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Optional: For working with Firebase, permissions for Google Play services -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Optional: If your app requires fine location access for any feature -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Optional: For writing to external storage if needed -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- Optional: If your app uses the camera for profile picture updates, for example -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Permission for posting notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Permission for foreground services -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- Permission for wake lock (prevents the CPU from sleeping) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:label="edu_chat"
         android:name="${applicationName}"
@@ -20,6 +49,10 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+            <!-- Firebase Cloud Messaging meta-data -->
+            <meta-data
+              android:name="com.google.firebase.messaging.default_notification_channel_id"
+              android:value="@string/default_notification_channel_id" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

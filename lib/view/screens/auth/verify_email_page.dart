@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../chats_screen.dart';
 
 class VerifyEmailPage extends StatefulWidget {
