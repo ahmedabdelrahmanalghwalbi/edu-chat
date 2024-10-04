@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'provider/firebase_provider.dart';
-import 'view/screens/auth/auth_page.dart';
-import 'view/screens/auth/verify_email_page.dart';
+import 'features/views/screens/auth/auth_page.dart';
+import 'features/views/screens/chats_screen.dart';
 
 Future<void> _backgroundMessageHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
@@ -70,7 +70,7 @@ class MainPage extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const VerifyEmailPage();
+              return const ChatsScreen();
             } else {
               return const AuthPage();
             }

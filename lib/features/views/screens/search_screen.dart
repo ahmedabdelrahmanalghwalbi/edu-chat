@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../provider/firebase_provider.dart';
+import '../../../provider/firebase_provider.dart';
 import '../widgets/custom_text_form_field.dart';
 import '../widgets/empty_widget.dart';
 import '../widgets/user_item.dart';

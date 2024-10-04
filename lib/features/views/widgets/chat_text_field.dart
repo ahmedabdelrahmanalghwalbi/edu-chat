@@ -1,10 +1,9 @@
 import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../constants.dart';
-import '../../services/firebase_firestore_service.dart';
-import '../../services/media_service.dart';
-import '../../services/notification_service.dart';
+import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
+import '../../../core/services/media/media.service.dart';
+import '../../../core/services/notification/notification.service.dart';
 import 'custom_text_form_field.dart';
 
 class ChatTextField extends StatefulWidget {
@@ -45,7 +44,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
           ),
           const SizedBox(width: 5),
           CircleAvatar(
-            backgroundColor: mainColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             radius: 20,
             child: IconButton(
               icon: const Icon(Icons.send, color: Colors.white),
@@ -54,7 +53,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
           ),
           const SizedBox(width: 5),
           CircleAvatar(
-            backgroundColor: mainColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             radius: 20,
             child: IconButton(
               icon: const Icon(Icons.camera_alt, color: Colors.white),

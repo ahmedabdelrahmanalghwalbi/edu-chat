@@ -2,9 +2,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../main.dart';
-import '../../services/firebase_firestore_service.dart';
-import '../../services/notification_service.dart';
+import '../../../main.dart';
+import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
+import '../../../core/services/notification/notification.service.dart';
 import '../screens/auth/forgot_password_page.dart';
 
 class LoginWidget extends StatefulWidget {

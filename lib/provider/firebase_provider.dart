@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../models/message.dart';
-import '../models/user.dart';
-import '../services/firebase_firestore_service.dart';
+import '../features/models/message.dart';
+import '../features/models/user.dart';
+import '../core/services/firebase_firestore/firebase_firestore.service.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   ScrollController scrollController = ScrollController();

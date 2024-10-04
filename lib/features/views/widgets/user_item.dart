@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import '../../constants.dart';
 import '../../models/user.dart';
 import '../screens/chat_screen.dart';
 
@@ -53,8 +52,8 @@ class _UserItemState extends State<UserItem> {
           subtitle: Text(
             'Last Active : ${timeago.format(widget.user.lastActive)}',
             maxLines: 2,
-            style: const TextStyle(
-              color: mainColor,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
               fontSize: 15,
               overflow: TextOverflow.ellipsis,
             ),

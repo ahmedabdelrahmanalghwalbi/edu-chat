@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../platform_service/platform_is.service.dart';
+import '../platform/platform_is.service.dart';
 
 class LayoutService {
   /// check if the device is mobile

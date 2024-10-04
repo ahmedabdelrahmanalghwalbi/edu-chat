@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import '../../constants.dart';
 import '../../models/message.dart';
 
 class MessageBubble extends StatelessWidget {
@@ -20,7 +19,7 @@ class MessageBubble extends StatelessWidget {
         alignment: isMe ? Alignment.topLeft : Alignment.topRight,
         child: Container(
           decoration: BoxDecoration(
-            color: isMe ? mainColor : Colors.grey,
+            color: isMe ? Theme.of(context).colorScheme.primary : Colors.grey,
             borderRadius: isMe
                 ? const BorderRadius.only(
                     topRight: Radius.circular(30),

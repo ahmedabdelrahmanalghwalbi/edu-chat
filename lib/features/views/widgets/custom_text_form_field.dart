@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
@@ -32,8 +30,7 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,
-          prefixIcon:
-              prefixIcon != null ? Icon(prefixIcon) : null,
+          prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
           suffixIcon: suffixIcon != null
               ? IconButton(
                   onPressed: onPressedSuffixIcon,
@@ -45,7 +42,8 @@ class CustomTextFormField extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: mainColor),
+            borderSide:
+                BorderSide(color: Theme.of(context).colorScheme.primary),
           ),
         ),
       );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../constants/app_sizes.dart';
-import '../platform_service/platform_is.service.dart';
+import '../platform/platform_is.service.dart';
 import 'custom_alert.dart';
 
 enum DialogAnimationTypes { none, feedIn, open, opacity }

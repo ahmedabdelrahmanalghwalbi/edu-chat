@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/message.dart';
-import '../../provider/firebase_provider.dart';
+import '../../../provider/firebase_provider.dart';
 import 'empty_widget.dart';
 import 'message_bubble.dart';
 

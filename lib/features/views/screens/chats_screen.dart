@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../provider/firebase_provider.dart';
-import '../../services/firebase_firestore_service.dart';
-import '../../services/notification_service.dart';
+import '../../../provider/firebase_provider.dart';
+import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
+import '../../../core/services/notification/notification.service.dart';
 import '../widgets/user_item.dart';
 import 'search_screen.dart';
 

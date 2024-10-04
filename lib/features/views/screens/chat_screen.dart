@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../provider/firebase_provider.dart';
+import '../../../provider/firebase_provider.dart';
 import '../widgets/chat_messages.dart';
 import '../widgets/chat_text_field.dart';
 
