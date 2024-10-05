@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../provider/firebase_provider.dart';
 import '../../../core/services/firebase_firestore/firebase_firestore.service.dart';
-import '../../../core/services/notification/notification_legacy.service.dart';
 import '../search/widgets/user_item.dart';
 import '../search/search_screen.dart';
 
@@ -17,14 +16,15 @@ class ChatsScreen extends StatefulWidget {
 }
 
 class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
-  final notificationService = NotificationsService();
+  // TODO: Implement push notification service
+  // final notificationService = NotificationsService();
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     Provider.of<FirebaseProvider>(context, listen: false).getAllUsers();
-
-    notificationService.firebaseNotification(context);
+    // TODO: Implement push notification service
+    // notificationService.firebaseNotification(context);
   }
 
   @override

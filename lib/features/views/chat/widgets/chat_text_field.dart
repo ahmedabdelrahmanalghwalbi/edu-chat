@@ -1,11 +1,9 @@
 import 'dart:typed_data';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_sizes.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../../../core/services/media/media.service.dart';
-import '../../../../core/services/notification/notification_legacy.service.dart';
 import '../../search/widgets/custom_text_form_field.dart';
 
 class ChatTextField extends StatefulWidget {
@@ -19,13 +17,14 @@ class ChatTextField extends StatefulWidget {
 
 class _ChatTextFieldState extends State<ChatTextField> {
   final controller = TextEditingController();
-  final notificationsService = NotificationsService();
+  // final notificationsService = NotificationsService();
 
   Uint8List? file;
 
   @override
   void initState() {
-    notificationsService.getReceiverToken(widget.receiverId);
+    // TODO: Implement push notification service
+    // notificationsService.getReceiverToken(widget.receiverId);
     super.initState();
   }
 
@@ -71,10 +70,11 @@ class _ChatTextFieldState extends State<ChatTextField> {
         receiverId: widget.receiverId,
         content: controller.text,
       );
-      await notificationsService.sendNotification(
-        body: controller.text,
-        senderId: FirebaseAuth.instance.currentUser!.uid,
-      );
+      // TODO: Implement push notification service
+      // await notificationsService.sendNotification(
+      //   body: controller.text,
+      //   senderId: FirebaseAuth.instance.currentUser!.uid,
+      // );
       controller.clear();
       FocusScope.of(context).unfocus();
     }
@@ -89,10 +89,11 @@ class _ChatTextFieldState extends State<ChatTextField> {
         receiverId: widget.receiverId,
         file: file!,
       );
-      await notificationsService.sendNotification(
-        body: AppStrings.image,
-        senderId: FirebaseAuth.instance.currentUser!.uid,
-      );
+      // TODO: Implement push notification service
+      // await notificationsService.sendNotification(
+      //   body: AppStrings.image,
+      //   senderId: FirebaseAuth.instance.currentUser!.uid,
+      // );
     }
   }
 }

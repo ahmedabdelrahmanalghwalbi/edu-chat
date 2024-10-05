@@ -25,9 +25,9 @@ abstract class AuthController {
       await FirebaseFirestoreService.updateUserData(
         {'lastActive': DateTime.now()},
       );
-
-      await notifications.requestPermission();
-      await notifications.getToken();
+      // TODO: Implement push notification service
+      // await notifications.requestPermission();
+      // await notifications.getToken();
     } on FirebaseAuthException catch (e) {
       final snackBar = SnackBar(content: Text(e.message!));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -68,9 +68,9 @@ abstract class AuthController {
         uid: user.user!.uid,
         name: name,
       );
-
-      await notifications.requestPermission();
-      await notifications.getToken();
+      // TODO: Implement push notification service
+      // await notifications.requestPermission();
+      // await notifications.getToken();
     } on FirebaseAuthException catch (e) {
       final snackBar = SnackBar(content: Text(e.message!));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
