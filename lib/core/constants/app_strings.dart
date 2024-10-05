@@ -19,12 +19,12 @@ abstract class AppStrings {
   static const String online = 'Online';
   static const String offline = 'Offline';
   static const String chats = 'Chats';
-  static const String userSearch = 'User Search';
+  static const String usersSearch = 'Users Search';
   static const String search = 'Search';
   static const String searchOfUser = 'Search of User';
   static const String sayHello = 'Say Hello !';
-  static const String addMessage = 'Add Message ...';
-  static const String image = 'image ........';
+  static const String addMessage = 'Message';
+  static const String image = 'Image';
   static const String enterValidEmail = 'Enter a valid email';
   static const String enterMinimum6Chars = 'Enter min. 6 characters';
   static const String noAccount = 'No account? ';

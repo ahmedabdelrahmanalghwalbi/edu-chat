@@ -20,17 +20,19 @@ class MessageBubble extends StatelessWidget {
         alignment: isMe ? Alignment.topLeft : Alignment.topRight,
         child: Container(
           decoration: BoxDecoration(
-            color: isMe ? Theme.of(context).colorScheme.primary : Colors.grey,
+            color: isMe
+                ? Colors.grey.shade600
+                : Theme.of(context).colorScheme.secondary,
             borderRadius: isMe
                 ? const BorderRadius.only(
-                    topRight: Radius.circular(AppSizes.s30),
-                    bottomRight: Radius.circular(AppSizes.s30),
-                    topLeft: Radius.circular(AppSizes.s30),
+                    topRight: Radius.circular(AppSizes.s16),
+                    bottomRight: Radius.circular(AppSizes.s16),
+                    topLeft: Radius.circular(AppSizes.s16),
                   )
                 : const BorderRadius.only(
-                    topRight: Radius.circular(AppSizes.s30),
-                    bottomLeft: Radius.circular(AppSizes.s30),
-                    topLeft: Radius.circular(AppSizes.s30),
+                    topRight: Radius.circular(AppSizes.s16),
+                    bottomLeft: Radius.circular(AppSizes.s16),
+                    topLeft: Radius.circular(AppSizes.s16),
                   ),
           ),
           margin: const EdgeInsets.only(
@@ -54,14 +56,18 @@ class MessageBubble extends StatelessWidget {
                       ),
                     )
                   : Text(message.content,
-                      style: const TextStyle(color: Colors.white)),
-              const SizedBox(height: AppSizes.s5),
+                      style: const TextStyle(
+                        fontSize: AppSizes.s16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )),
+              gapH4,
               Text(
                 timeago.format(message.sentTime),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: AppSizes.s10,
-                ),
+                style: TextStyle(
+                    color: Colors.grey.shade300,
+                    fontSize: AppSizes.s10,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),

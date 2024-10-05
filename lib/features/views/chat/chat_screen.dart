@@ -28,42 +28,53 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(AppSizes.s16),
-        child: Column(
-          children: [
-            ChatMessages(receiverId: widget.userId),
-            ChatTextField(receiverId: widget.userId)
-          ],
-        ),
+      body: Column(
+        children: [
+          ChatMessages(receiverId: widget.userId),
+          ChatTextField(receiverId: widget.userId)
+        ],
       ),
     );
   }
 
   AppBar _buildAppBar() => AppBar(
       elevation: 0,
-      foregroundColor: Colors.black,
-      backgroundColor: Colors.transparent,
+      centerTitle: true,
+      foregroundColor: Colors.white,
+      backgroundColor: const Color(0xff463462),
       title: Consumer<FirebaseProvider>(
         builder: (context, value, child) => value.user != null
             ? Row(
                 children: [
                   if (value.user?.image != null)
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(value.user!.image),
-                      radius: AppSizes.s20,
+                    Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(value.user!.image),
+                          radius: AppSizes.s22,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: value.user?.isOnline ?? false
+                              ? Colors.green
+                              : Colors.grey,
+                          radius: AppSizes.s5,
+                        ),
+                      ],
                     ),
                   gapW12,
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         value.user?.name ?? '-',
                         style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: AppSizes.s20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      gapH4,
                       Text(
                         value.user?.isOnline ?? false
                             ? AppStrings.online
@@ -73,6 +84,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               ? Colors.green
                               : Colors.grey,
                           fontSize: AppSizes.s14,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],

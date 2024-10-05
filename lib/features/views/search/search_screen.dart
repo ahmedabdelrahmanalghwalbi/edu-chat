@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../provider/firebase_provider.dart';
-import 'widgets/custom_text_form_field.dart';
 import 'widgets/empty_widget.dart';
 import 'widgets/user_item.dart';
 
@@ -28,18 +27,18 @@ class _UsersSearchScreenState extends State<UsersSearchScreen> {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          foregroundColor: Colors.white,
+          backgroundColor: const Color(0xff463462),
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(
                 Icons.arrow_back_outlined,
-                color: Colors.black,
               )),
           title: const Text(
-            AppStrings.userSearch,
-            style: TextStyle(fontSize: AppSizes.s25, color: Colors.black),
+            AppStrings.usersSearch,
+            style: TextStyle(fontSize: AppSizes.s25),
           ),
         ),
         body: Padding(
@@ -47,9 +46,11 @@ class _UsersSearchScreenState extends State<UsersSearchScreen> {
               horizontal: AppSizes.s8, vertical: AppSizes.s16),
           child: Column(
             children: [
-              CustomTextFormField(
+              TextFormField(
                 controller: controller,
-                hintText: AppStrings.search,
+                decoration: const InputDecoration(
+                  hintText: AppStrings.search,
+                ),
                 onChanged: (val) =>
                     Provider.of<FirebaseProvider>(context, listen: false)
                         .searchUser(val),

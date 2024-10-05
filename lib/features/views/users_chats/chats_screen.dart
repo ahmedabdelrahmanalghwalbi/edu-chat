@@ -62,12 +62,13 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          foregroundColor: Colors.white,
+          backgroundColor: const Color(0xff463462),
           title: const Text(AppStrings.chats),
           leading: IconButton(
             onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const UsersSearchScreen())),
-            icon: const Icon(Icons.search, color: Colors.black),
+            icon: const Icon(Icons.search),
           ),
           actions: [
             IconButton(

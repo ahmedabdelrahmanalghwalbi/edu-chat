@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/app_sizes.dart';
 
 class EmptyWidget extends StatelessWidget {
-  const EmptyWidget({super.key, required this.icon, required this.text});
+  const EmptyWidget(
+      {super.key, this.color, required this.icon, required this.text});
 
   final IconData icon;
   final String text;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -16,12 +18,12 @@ class EmptyWidget extends StatelessWidget {
             Icon(
               icon,
               size: AppSizes.s140,
-              color: Colors.white,
+              color: color ?? Colors.white,
             ),
             Text(
               text,
-              style:
-                  const TextStyle(fontSize: AppSizes.s20, color: Colors.white),
+              style: TextStyle(
+                  fontSize: AppSizes.s20, color: color ?? Colors.white),
             ),
           ],
         ),

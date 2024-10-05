@@ -4,7 +4,6 @@ import '../../../../core/constants/app_sizes.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/services/firebase_firestore/firebase_firestore.service.dart';
 import '../../../../core/services/media/media.service.dart';
-import '../../search/widgets/custom_text_form_field.dart';
 
 class ChatTextField extends StatefulWidget {
   const ChatTextField({super.key, required this.receiverId});
@@ -18,7 +17,6 @@ class ChatTextField extends StatefulWidget {
 class _ChatTextFieldState extends State<ChatTextField> {
   final controller = TextEditingController();
   // final notificationsService = NotificationsService();
-
   Uint8List? file;
 
   @override
@@ -35,33 +33,43 @@ class _ChatTextFieldState extends State<ChatTextField> {
   }
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          Expanded(
-            child: CustomTextFormField(
-              controller: controller,
-              hintText: AppStrings.addMessage,
+  Widget build(BuildContext context) => Container(
+        decoration: const BoxDecoration(color: Colors.black87),
+        padding: const EdgeInsets.only(
+            left: AppSizes.s8,
+            right: AppSizes.s8,
+            top: AppSizes.s14,
+            bottom: AppSizes.s40),
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              radius: AppSizes.s20,
+              child: IconButton(
+                icon: const Icon(Icons.camera_alt, color: Colors.white),
+                onPressed: _sendImage,
+              ),
             ),
-          ),
-          gapW4,
-          CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            radius: AppSizes.s20,
-            child: IconButton(
-              icon: const Icon(Icons.send, color: Colors.white),
-              onPressed: () => _sendText(context),
+            gapW4,
+            Expanded(
+              child: TextFormField(
+                controller: controller,
+                decoration: const InputDecoration(
+                    hintText: AppStrings.addMessage,
+                    contentPadding: EdgeInsets.all(AppSizes.s12)),
+              ),
             ),
-          ),
-          gapW4,
-          CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            radius: AppSizes.s20,
-            child: IconButton(
-              icon: const Icon(Icons.camera_alt, color: Colors.white),
-              onPressed: _sendImage,
+            gapW4,
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              radius: AppSizes.s20,
+              child: IconButton(
+                icon: const Icon(Icons.send, color: Colors.white),
+                onPressed: () => _sendText(context),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 
   Future<void> _sendText(BuildContext context) async {
