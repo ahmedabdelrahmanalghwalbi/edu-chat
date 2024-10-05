@@ -32,7 +32,7 @@ Edu_Chat is built following the **MVC (Model-View-Controller)** pattern, ensurin
 
 ### User Authentication
 - **Firebase Authentication** is implemented to handle user sign-up, login, and logout.
-- Support for both email-based and anonymous authentication.
+- Support for email-based authentication.
 
 ### Real-Time Messaging
 - **Firestore** is used to enable real-time messaging, ensuring messages are sent and received instantly.
