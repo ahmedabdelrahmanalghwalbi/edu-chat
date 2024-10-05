@@ -2,8 +2,6 @@
 # Edu_Chat - Flutter Chat Application
 
 ## 1. Project Demo Video 🎥
-[Edu_Chat Demo Video](#)  
-*Add the link to your project demo video here after recording and uploading it to a platform like YouTube or Vimeo.*
 
 ---
 
