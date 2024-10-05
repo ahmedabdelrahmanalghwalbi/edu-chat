@@ -66,8 +66,8 @@ Edu_Chat is built following the **MVC (Model-View-Controller)** pattern, ensurin
    This project is linked to a Firebase project under my account. To run it with your own Firebase account:
    - Go to the [Firebase Console](https://console.firebase.google.com/).
    - Create a new Firebase project and add Android and iOS apps.
-   - Download the `google-services.json` (for Android) and `GoogleService-Info.plist` (for iOS) from your Firebase project.
-   - Replace the existing `google-services.json` and `GoogleService-Info.plist` files in the project with your own.
+   - Download the `google-services.json` (for Android) from your Firebase project.
+   - Replace the existing `google-services.json` file in the project with your own.
 
 4. **Run the App**  
    Use the following command to run the app on your connected device or emulator:
@@ -76,6 +76,7 @@ Edu_Chat is built following the **MVC (Model-View-Controller)** pattern, ensurin
    ```
 
 ### Note:
-The project is connected to Firebase services via my email account, but you can easily set up your own Firebase account and replace the configuration files (`google-services.json` and `GoogleService-Info.plist`) to run the app under your own Firebase project.
+The project is connected to Firebase services via my email account, but you can easily set up your own Firebase account and replace the configuration file
+(`google-services.json`) to run the app under your own Firebase project.
 
 
