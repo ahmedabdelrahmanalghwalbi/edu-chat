@@ -3,6 +3,10 @@
 
 ## 1. Project Demo Video 🎥
 
+
+https://github.com/user-attachments/assets/0a25d6eb-fc7d-404e-9bc1-1d4b8a33ae85
+
+
 ---
 
 ## 2. Project Architecture: Layered First File Architecture with MVC Pattern
